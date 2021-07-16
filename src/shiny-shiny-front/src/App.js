@@ -1,6 +1,7 @@
 import { Container } from "react-bootstrap";
 import Header from "./components/Header/Header";
 import { UserTableContainer } from "./components/containers/UserTableContainer";
+import { ProductTableContainer } from "./components/containers/ProductTableContainer";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./components/Home/Home";
 import { ToastContainer } from "react-toastify";
@@ -14,6 +15,9 @@ function App() {
         <Switch>
           <Route path="/home">
             <Home />
+          </Route>
+          <Route path="/products">
+            <ProductTableContainer />
           </Route>
           <Route path="/users">
             <UserTableContainer />

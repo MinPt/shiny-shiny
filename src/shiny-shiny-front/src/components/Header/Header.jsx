@@ -11,6 +11,9 @@ const Header = () => {
             <Link to="/home" className="router-link">
               <Button variant="outline-light mx-5">Home</Button>
             </Link>
+            <Link to="/products" className="router-link">
+              <Button variant="outline-light mx-5">Products</Button>
+            </Link>
             <Link to="/users" className="router-link">
               <Button variant="outline-light mx-5">Users</Button>
             </Link>
