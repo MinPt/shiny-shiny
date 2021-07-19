@@ -24,7 +24,10 @@ router.post("/", async (req, res) => {
 
   await user.save();
 
-  const token = jwt.sign({ _id: user._id }, config.get("jwtPrivateKey"));
+  const token = jwt.sign(
+    _.pick(user, ["_id", "name", "email"]),
+    config.get("jwtPrivateKey")
+  );
 
   const newUser = _.pick(user, ["_id", "name", "email"]);
 

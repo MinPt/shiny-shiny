@@ -1,9 +1,14 @@
 import { Row, Col, Button, Container } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { currentUserSlice } from "../../store/currentUserSlice";
 import isLogged from "../../utilities/isLogged";
 import "./Header.scss";
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const currentUser = useSelector((state) => state.currentUser);
+
   return (
     <header className="header p-2">
       <Container fluid>
@@ -15,27 +20,27 @@ const Header = () => {
             <Link to="/products" className="router-link">
               <Button variant="outline-light mx-5">Products</Button>
             </Link>
-            {isLogged() ? (
+            {currentUser ? (
               <Link to="/users" className="router-link">
                 <Button variant="outline-light mx-5">Users</Button>
               </Link>
             ) : null}
           </Col>
           <Col xs={2} className="d-flex justify-content-end">
-            {isLogged() ? (
+            {currentUser ? (
               <Button
-                onClick={() => localStorage.removeItem("jwtToken")}
+                onClick={() => dispatch(currentUserSlice.actions.logout())}
                 variant="outline-light mx-2"
               >
                 Logout
               </Button>
             ) : null}
-            {!isLogged() ? (
+            {!currentUser ? (
               <Link to="/login" className="router-link mx-1">
                 <Button variant="outline-light">Login</Button>
               </Link>
             ) : null}
-            {!isLogged() ? (
+            {!currentUser ? (
               <Link to="/register" className="router-link">
                 <Button variant="outline-light">Register</Button>
               </Link>

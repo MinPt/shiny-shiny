@@ -22,11 +22,13 @@ class UserApi {
 
   async authUser(user) {
     const { data } = await this.api.post(`auth`, user);
+    localStorage.setItem("jwtToken", data.jwtToken);
     return data;
   }
 
   async createUser(user) {
     const { data } = await this.api.post(`users`, user);
+    localStorage.setItem("jwtToken", data.jwtToken);
     return data;
   }
 }
