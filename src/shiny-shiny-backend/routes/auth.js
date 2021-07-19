@@ -9,6 +9,7 @@ const config = require("config");
 const router = express.Router();
 
 router.post("/", async (req, res) => {
+  console.log(req.body);
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
@@ -25,7 +26,7 @@ router.post("/", async (req, res) => {
 
 function validate(req) {
   const schema = Joi.object({
-    email: Joi.string().required().max(255).email(),
+    email: Joi.string().max(255).email().required(),
     password: Joi.string().min(5).max(255).required(),
   });
 

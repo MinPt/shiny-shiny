@@ -20,6 +20,11 @@ class UserApi {
     return data;
   }
 
+  async authUser(user) {
+    const { data } = await this.api.post(`auth`, user);
+    return data;
+  }
+
   async createUser(user) {
     const { data } = await this.api.post(`users`, user);
     return data;
