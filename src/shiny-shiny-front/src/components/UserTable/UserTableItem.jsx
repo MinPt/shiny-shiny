@@ -11,10 +11,10 @@ const UserTableItem = ({ user, index }) => {
       <td>{index}</td>
       <td>{user.name}</td>
       <td>{user.email}</td>
-      <td>
+      <td className="text-center">
         <Button>Edit user</Button>
       </td>
-      <td>
+      <td className="text-center">
         <Button
           onClick={() => {
             dispatch(removeUser(user._id));

@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import ProductApi from "../services/eneties/product";
+import ProductApi from "../services/enteties/product";
 
 const initialState = [
   { name: "tea", description: "Some random discription", price: 200 },

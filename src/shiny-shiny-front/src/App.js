@@ -13,6 +13,8 @@ import { ToastContainer } from "react-toastify";
 import Registration from "./components/Registration/Registration";
 import SecuredRoute from "./common/SecuredRoute";
 import Login from "./components/Login/Login";
+import { ProductListContainer } from "./components/containers/ProductListContainer";
+import Cart from "./components/Cart/Cart";
 
 function App() {
   return (
@@ -24,16 +26,22 @@ function App() {
           <Route path="/home">
             <Home />
           </Route>
-          <Route path="/products">
-            <ProductTableContainer />
-          </Route>
           <Route path="/register">
             <Registration />
           </Route>
+          <Route path="/products">
+            <ProductListContainer />
+          </Route>
+          <SecuredRoute path="/cart">
+            <Cart />
+          </SecuredRoute>
           <Route path="/login">
             <Login />
           </Route>
-          <SecuredRoute path="/users">
+          <SecuredRoute path="/admin/products">
+            <ProductTableContainer />
+          </SecuredRoute>
+          <SecuredRoute path="/admin/users">
             <UserTableContainer />
           </SecuredRoute>
           <Route path="/">

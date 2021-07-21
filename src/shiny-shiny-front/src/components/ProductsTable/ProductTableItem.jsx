@@ -12,10 +12,10 @@ const ProductTableItem = ({ product, index }) => {
       <td>{product.name}</td>
       <td>{product.description}</td>
       <td>{product.price}$</td>
-      <td>
+      <td className="text-center">
         <Button>Edit product</Button>
       </td>
-      <td>
+      <td className="text-center">
         <Button
           onClick={() => {
             dispatch(removeProduct(product._id));

@@ -2,7 +2,7 @@ import { Row, Col, Button, Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { currentUserSlice } from "../../store/currentUserSlice";
-import isLogged from "../../utilities/isLogged";
+import { productCartSlice } from "../../store/productCartSlice";
 import "./Header.scss";
 
 const Header = () => {
@@ -13,27 +13,49 @@ const Header = () => {
     <header className="header p-2">
       <Container fluid>
         <Row>
-          <Col className="d-flex justify-content-center">
+          <Col className="d-flex justify-content-start">
             <Link to="/home" className="router-link">
-              <Button variant="outline-light mx-5">Home</Button>
+              <Button variant="outline-light mx-2">Home</Button>
             </Link>
             <Link to="/products" className="router-link">
-              <Button variant="outline-light mx-5">Products</Button>
+              <Button variant="outline-light mx-2">Products</Button>
             </Link>
+
             {currentUser ? (
-              <Link to="/users" className="router-link">
-                <Button variant="outline-light mx-5">Users</Button>
+              <Link to="/cart" className="router-link">
+                <Button variant="outline-light mx-2">Cart</Button>
               </Link>
             ) : null}
-          </Col>
-          <Col xs={2} className="d-flex justify-content-end">
             {currentUser ? (
-              <Button
-                onClick={() => dispatch(currentUserSlice.actions.logout())}
-                variant="outline-light mx-2"
-              >
-                Logout
-              </Button>
+              <>
+                <Link to="/admin/products" className="router-link">
+                  <Button variant="outline-light mx-2">Products table</Button>
+                </Link>
+                <Link to="/admin/users" className="router-link">
+                  <Button variant="outline-light mx-2">Users</Button>
+                </Link>
+              </>
+            ) : null}
+          </Col>
+          <Col
+            xs={4}
+            className="d-flex justify-content-end align-content-center"
+          >
+            {currentUser ? (
+              <>
+                <p className="d-flex align-content-center link-light p-2 m-0">
+                  Hello, {currentUser.name}
+                </p>
+                <Button
+                  onClick={() => {
+                    dispatch(currentUserSlice.actions.logout());
+                    dispatch(productCartSlice.actions.clearCart());
+                  }}
+                  variant="outline-light mx-2"
+                >
+                  Logout
+                </Button>
+              </>
             ) : null}
             {!currentUser ? (
               <Link to="/login" className="router-link mx-1">

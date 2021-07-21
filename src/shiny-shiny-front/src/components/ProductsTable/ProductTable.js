@@ -28,7 +28,7 @@ class ProductTable extends Component {
             <th className="col-4">Description</th>
             <th className="col-1">Price</th>
             <th className="col-2"></th>
-            <th className="col-2">
+            <th className="col-2 text-center">
               <Button onClick={this.handleProductCreation} variant="success">
                 Create product
               </Button>

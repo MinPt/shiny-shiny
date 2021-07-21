@@ -1,7 +1,6 @@
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { Form, Button, Container, InputGroup, Row, Col } from "react-bootstrap";
-import UserApi from "../../services/eneties/user";
 import { withRouter } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { authUser } from "../../store/currentUserSlice";
