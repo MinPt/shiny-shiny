@@ -17,6 +17,7 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
+    useFindAndModify: true,
   })
   .then(() => console.log("Connected to db"))
   .catch(() => console.log("Cannot connect to db"));
@@ -33,7 +34,7 @@ app.use((req, res, next) => {
 
   res.setHeader(
     "Access-Control-Allow-Headers",
-    "X-Requested-With,content-type"
+    "X-Requested-With,content-type, x-auth-token"
   );
 
   res.setHeader("Access-Control-Allow-Credentials", true);
@@ -44,6 +45,7 @@ app.use((req, res, next) => {
 app.use("/api/users", users);
 app.use("/api/products", products);
 app.use("/api/auth", auth);
+app.use(express.static("public"));
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => console.log(`Listening on port ${port}...`));

@@ -9,6 +9,16 @@ class ServiceApi {
       baseURL: apiEndpoint,
     });
 
+    this.api.interceptors.request.use((config) => {
+      const token = localStorage.getItem("jwtToken");
+
+      if (token !== null) {
+        config.headers["x-auth-token"] = token;
+      }
+
+      return config;
+    });
+
     this.api.interceptors.response.use(
       (value) => {
         return Promise.resolve(value);

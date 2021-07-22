@@ -26,7 +26,7 @@ const Header = () => {
                 <Button variant="outline-light mx-2">Cart</Button>
               </Link>
             ) : null}
-            {currentUser ? (
+            {currentUser?.isAdmin ? (
               <>
                 <Link to="/admin/products" className="router-link">
                   <Button variant="outline-light mx-2">Products table</Button>
@@ -57,15 +57,16 @@ const Header = () => {
                 </Button>
               </>
             ) : null}
+
             {!currentUser ? (
-              <Link to="/login" className="router-link mx-1">
-                <Button variant="outline-light">Login</Button>
-              </Link>
-            ) : null}
-            {!currentUser ? (
-              <Link to="/register" className="router-link">
-                <Button variant="outline-light">Register</Button>
-              </Link>
+              <>
+                <Link to="/login" className="router-link mx-1">
+                  <Button variant="outline-light">Login</Button>
+                </Link>
+                <Link to="/register" className="router-link">
+                  <Button variant="outline-light">Register</Button>
+                </Link>
+              </>
             ) : null}
           </Col>
         </Row>

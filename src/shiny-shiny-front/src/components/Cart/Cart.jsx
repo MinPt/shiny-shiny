@@ -1,11 +1,9 @@
 import { Col, Container, Row, Table } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import { selectTotalSum } from "../../store/productCartSlice";
+import { useSelector } from "react-redux";
 import CartItem from "./CartItem";
 
 const Cart = () => {
   const products = useSelector((state) => state.productCart);
-  const dispatch = useDispatch();
   const totalSum = useSelector((state) => {
     return state.productCart.reduce((subtotal, item) => {
       return (subtotal += item.count * item.price);

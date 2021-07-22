@@ -18,10 +18,19 @@ export const getProducts = createAsyncThunk("product/getProducts", async () => {
   return products;
 });
 
+export const updateProduct = createAsyncThunk(
+  "product/updateProduct",
+  async (product) => {
+    console.log(product);
+    const updatedProduct = await ProductApi.updateProduct(product);
+    return updatedProduct;
+  }
+);
+
 export const createProduct = createAsyncThunk(
   "product/createProduct",
-  async (user) => {
-    const createdProduct = await ProductApi.createProduct(user);
+  async (product) => {
+    const createdProduct = await ProductApi.createProduct(product);
     return createdProduct;
   }
 );
@@ -44,6 +53,12 @@ export const productSlice = createSlice({
     },
     [createProduct.fulfilled]: (state, action) => {
       state.push(action.payload);
+    },
+    [updateProduct.fulfilled]: (products, action) => {
+      products.map((product) => {
+        if (product._id === action.payload._id) return action.payload;
+        return product;
+      });
     },
   },
 });

@@ -24,6 +24,14 @@ class ProductApi {
     const { data } = await this.api.post(`products`, product);
     return data;
   }
+
+  async updateProduct(product) {
+    const id = product.get("_id");
+    product.delete("_id");
+
+    const { data } = await this.api.put(`products/${id}`, product);
+    return data;
+  }
 }
 
 export default new ProductApi(api);

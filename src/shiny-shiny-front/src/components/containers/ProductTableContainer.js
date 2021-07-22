@@ -5,6 +5,7 @@ import { getProducts } from "../../store/productSlice";
 const mapStateToProps = (state) => {
   return {
     products: state.products,
+    currentUser: state.currentUser,
   };
 };
 

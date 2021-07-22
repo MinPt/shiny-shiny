@@ -1,10 +1,8 @@
 const express = require("express");
 const { User, validateUser } = require("../models/user");
-const _ = require("lodash");
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const config = require("config");
 const router = express.Router();
+const _ = require("lodash");
 
 router.get("/", async (req, res) => {
   const users = await User.find().sort("name");
@@ -24,10 +22,7 @@ router.post("/", async (req, res) => {
 
   await user.save();
 
-  const token = jwt.sign(
-    _.pick(user, ["_id", "name", "email"]),
-    config.get("jwtPrivateKey")
-  );
+  const token = user.generateAuthToken();
 
   const newUser = _.pick(user, ["_id", "name", "email"]);
 

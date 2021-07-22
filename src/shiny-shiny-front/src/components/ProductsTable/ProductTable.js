@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { Button, Table } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import ProductCreateItem from "./ProductCreateItem";
 import ProductTableItem from "./ProductTableItem";
 
@@ -29,9 +30,11 @@ class ProductTable extends Component {
             <th className="col-1">Price</th>
             <th className="col-2"></th>
             <th className="col-2 text-center">
-              <Button onClick={this.handleProductCreation} variant="success">
-                Create product
-              </Button>
+              {this.props.currentUser ? (
+                <Link to="/products/create" className="router-link mx-1">
+                  <Button variant="success">Create product</Button>
+                </Link>
+              ) : null}
             </th>
           </tr>
         </thead>

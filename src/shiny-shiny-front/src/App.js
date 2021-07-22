@@ -15,6 +15,8 @@ import SecuredRoute from "./common/SecuredRoute";
 import Login from "./components/Login/Login";
 import { ProductListContainer } from "./components/containers/ProductListContainer";
 import Cart from "./components/Cart/Cart";
+import ProductCreateForm from "./components/ProductForm/ProductCreateForm";
+import ProductUpdateForm from "./components/ProductForm/ProductUpdateForm";
 
 function App() {
   return (
@@ -29,8 +31,14 @@ function App() {
           <Route path="/register">
             <Registration />
           </Route>
-          <Route path="/products">
+          <Route exact path="/products">
             <ProductListContainer />
+          </Route>
+          <Route exact path="/products/create">
+            <ProductCreateForm />
+          </Route>
+          <Route exact path="/products/update/:id">
+            <ProductUpdateForm />
           </Route>
           <SecuredRoute path="/cart">
             <Cart />
