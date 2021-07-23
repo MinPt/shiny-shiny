@@ -21,7 +21,6 @@ export const getProducts = createAsyncThunk("product/getProducts", async () => {
 export const updateProduct = createAsyncThunk(
   "product/updateProduct",
   async (product) => {
-    console.log(product);
     const updatedProduct = await ProductApi.updateProduct(product);
     return updatedProduct;
   }

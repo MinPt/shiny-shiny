@@ -26,10 +26,10 @@ class ProductApi {
   }
 
   async updateProduct(product) {
-    const id = product.get("_id");
-    product.delete("_id");
-
-    const { data } = await this.api.put(`products/${id}`, product);
+    const { data } = await this.api.put(
+      `products/${product.id}`,
+      product.product
+    );
     return data;
   }
 }

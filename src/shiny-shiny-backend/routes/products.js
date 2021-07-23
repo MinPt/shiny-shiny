@@ -79,29 +79,17 @@ router.put("/:id", auth, async (req, res) => {
 
     const { error } = validateProduct(req.body);
     if (error) return res.status(400).send(error.details[0].message);
-    let product = null;
-    if (!thumbnail) {
-      product = await Product.findByIdAndUpdate(
-        req.params.id,
-        {
-          name: req.body.name,
-          price: req.body.price,
-          description: req.body.description,
-          thumbnail: thumbnail,
-        },
-        { new: true }
-      );
-    } else {
-      product = await Product.findByIdAndUpdate(
-        req.params.id,
-        {
-          name: req.body.name,
-          price: req.body.price,
-          description: req.body.description,
-        },
-        { new: true }
-      );
-    }
+
+    const product = await Product.findByIdAndUpdate(
+      req.params.id,
+      {
+        name: req.body.name,
+        price: req.body.price,
+        description: req.body.description,
+        thumbnail: thumbnail,
+      },
+      { new: true }
+    );
 
     if (!product) return res.status(404).send("Product with such id not found");
 

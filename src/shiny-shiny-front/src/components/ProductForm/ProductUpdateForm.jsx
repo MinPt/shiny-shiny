@@ -27,9 +27,10 @@ const ProductUpdateForm = (props) => {
         product.append("name", values.name);
         product.append("price", values.price);
         product.append("description", values.description);
-        product.append("_id", updatingProduct._id);
-        if (image !== undefined) product.append("image", image, image.name);
-        dispatch(updateProduct(product));
+        product.append("thumbnail", updatingProduct.thumbnail);
+        if (image) product.append("image", image, image.name);
+        const updatedProduct = { product, id: updatingProduct._id };
+        dispatch(updateProduct(updatedProduct));
         setSubmitting(false);
         props.history.push("/admin/products");
       }}

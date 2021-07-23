@@ -1,4 +1,4 @@
-import { Col, Container, Row, Table } from "react-bootstrap";
+import { Button, Col, Container, Row, Table } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import CartItem from "./CartItem";
 
@@ -35,8 +35,11 @@ const Cart = () => {
           )}
         </Col>
       </Row>
-      <Row>
+      <Row className="d-flex justify-content-center my-5">
         <h2>Total sum is: {totalSum}$</h2>
+        <Button className="w-25" disabled={totalSum < 1}>
+          <h3>Buy</h3>
+        </Button>
       </Row>
     </Container>
   );
