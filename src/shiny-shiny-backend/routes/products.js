@@ -4,7 +4,7 @@ const auth = require("../middleware/auth");
 const admin = require("../middleware/admin");
 const multer = require("multer");
 const path = require("path");
-
+const fs = require("fs");
 const router = express.Router();
 
 //Storage
@@ -101,7 +101,9 @@ router.delete("/:id", [auth, admin], async (req, res) => {
   const product = await Product.findByIdAndDelete(req.params.id);
 
   if (!product) return res.status(404).send("User with such id not found");
-
+  if (product.thumbnail !== "placeholder.png") {
+    fs.unlinkSync(`public/images/${product.thumbnail}`);
+  }
   res.send(product);
 });
 
